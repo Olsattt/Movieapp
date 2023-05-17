@@ -245,13 +245,14 @@ function showMoviesList(data)
         
 
         
-            const movieEL = document.createElement("div") // создание элемента
+            const movieEL; 
        
-            movieEL.classList.add("movie") // добавляем класс movie в наш блок
+            // добавляем класс movie в наш блок
             
             movie.rating >= ratyng.value && movie.year >= filmyear.value && (movie.genres[0].genre == ganer.value)
             && movie.countries[0].country === filmcountrie.value ?
-            
+            movieEL = document.createElement("div") // создание элемента
+            movieEL.classList.add("movie") 
             movieEL.innerHTML = 
             `
                 <div class="movie">
