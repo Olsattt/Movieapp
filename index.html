@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Movie app</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header__content">
+            <a href="index.html" class="header__logo">MovieApp</a>
+            <div class="dev-film">
+                <button class="dev-film-btn" id="openModal">Подобрать фильм</button>
+            </div>
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <form class="modal-form">
+                        Жанр
+                        <select id="ganer" type="text" class="film-input" placeholder="Например:Боевик">
+                            <option>боевик</option>
+                            <option>триллер</option>
+                            <option>фантастика</option>
+                            <option>драма</option>
+                        </select>
+                        Страна
+                        <select id="countrie" type="text" class="film-input" placeholder="Например:США">
+                            <option>США</option>
+                            <option>Россия</option>
+                        </select>
+                        Рейтинг мин.
+                        <select id="rating" type="text" class="film-input" placeholder="Например: 7">
+                            <option>10</option>
+                            <option>9</option>
+                            <option>8</option>
+                            <option>7</option>
+                            <option>6</option>
+                            <option>5</option>
+                            <option>4</option>
+                            <option>3</option>
+                            <option>2</option>
+                            <option>1</option>
+                        </select>
+                        Год мин.
+                        <select id="year" type="text" class="film-input" placeholder="Например: 2012">
+                                <option>2023</option>
+                                <option>2022</option>
+                                <option>2021</option>
+                                <option>2020</option>
+                                <option>2019</option>
+                                <option>2018</option>
+                                <option>2017</option>
+                                <option>2016</option>
+                                <option>2015</option>
+                                <option>2014</option>
+                        </select>
+                    </form>
+                    <div class="modal-btn">
+                        <button id="submit" class="submit">Найти</button>
+                        <button class="close">Закрыть</button>
+                    </div>
+                </div>
+              </div>
+            <form >
+                <input type="text" class="header__search" placeholder="Поиск">
+            </form>
+        </div>
+    </header>
+    <div class="container ">
+        <div class="grid">
+            <div class="posts">
+                Премьеры мая
+            </div>
+            <div class="movies">
+                
+            </div>
+            <div class="posts">
+                Премьеры мая
+            </div>
+        </div>
+        <div class="btns">
+            <button class="btn" id="back">back</button>
+            <div id="page-numbers">
+                
+            </div>
+            <button class="btn" id="next">next</button>
+        </div>
+        
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
