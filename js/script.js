@@ -245,13 +245,12 @@ function showMoviesList(data)
         
 
         
-            const movieEL =   movieEL = document.createElement("div") // создание элемента
-            movieEL.classList.add("movie") 
+            movieEL = document.createElement("div"); // создание элемента
+            movieEL.classList.add("movie") ; // задаем класс нашему элементу
        
             // добавляем класс movie в наш блок
             
-            movie.rating >= ratyng.value && movie.year >= filmyear.value && (movie.genres[0].genre == ganer.value)
-            && movie.countries[0].country === filmcountrie.value ?
+            movie.rating >= ratyng.value && movie.year >= filmyear.value && movie.genres[0].genre == ganer.value  && movie.countries[0].country === filmcountrie.value ?
           
             movieEL.innerHTML = 
             `
@@ -277,11 +276,11 @@ function showMoviesList(data)
                 </div>
             `   
         
-        
-        : null
+            
+        : null 
      // отрисовывем карточку фильма
-                   
-        moviesEl.appendChild(movieEL);
+     movie.rating >= ratyng.value && movie.year >= filmyear.value && movie.genres[0].genre == ganer.value  && movie.countries[0].country === filmcountrie.value ?     
+     moviesEl.appendChild(movieEL):null //добавляем блок movie в  movies
       
     })
 }
