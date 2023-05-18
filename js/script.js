@@ -1,4 +1,4 @@
-const API_KEY = "369cafa9-6745-4f83-b350-6edaa8ba305a";
+const API_KEY = "caddf774-05da-4e46-8662-359dbec4ca89";
 let page = 1;
 let API_URL_POPULAR_none = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=`; //пустая ссылка топа для перемещния по страницам 
 let API_URL_PREMIER = `https://kinopoiskapiunofficial.tech/api/v2.2/films/premieres?year=2023&month=MAY`; //ссылка на премьеры в мае
