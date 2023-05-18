@@ -111,6 +111,7 @@ const search = document.querySelector(".header__search"); // создаём пе
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
+
     const apiSearchUrl = `${API_URL_SEARCH}${search.value}`
 
     if(search.value)
@@ -118,6 +119,7 @@ form.addEventListener("submit", (e) => {
         getMovies(apiSearchUrl);
         search.value = "";
     }
+
 })
 
 // pagination
@@ -209,6 +211,19 @@ window.onclick = function(event) {
 }
 //подборка
 
+document.querySelector('#submit').onclick = function()
+{
+    
+    getMoviesList(API_URL_POPULAR_none + page);
+
+    for(let i = 2;i < 20;i++)
+    {
+        getMoviesLists(API_URL_POPULAR_none + i);
+    }
+    
+
+}
+
 let ganer = document.getElementById('ganer');
 let filmyear = document.getElementById('year');
 let ratyng = document.getElementById('rating');
@@ -230,6 +245,8 @@ async function getMoviesList(url) // создание асинхронной ф�
     console.log(respData);
 
     showMoviesList(respData);
+
+    
 }
 
 
@@ -285,11 +302,71 @@ function showMoviesList(data)
     })
 }
 
+// showmovielist 2 
 
-document.querySelector('#submit').onclick = function()
+async function getMoviesLists(url) // создание асинхронной функции для запроса
 {
+    const resp = await fetch(url, {
+        headers:{
+            "Content-Type" : "application/json",
+            "X-API-KEY": API_KEY,
+        },
+    });
+
+    const respData = await resp.json();
+    console.log(respData);
+
+    showMoviesLists(respData);
+}
+
+function showMoviesLists(data)
+{
+ const moviesEl = document.querySelector(".movies"); //указываем где будут отрисовываться карточки
+
+
+    data.films.forEach(movie => // проходимся по всем объектам в массиве movie 
+    { 
+        
+
+        
+            movieEL = document.createElement("div"); // создание элемента
+            movieEL.classList.add("movie") ; // задаем класс нашему элементу
+       
+            // добавляем класс movie в наш блок
+            
+            movie.rating >= ratyng.value && movie.year >= filmyear.value && movie.genres[0].genre == ganer.value  && movie.countries[0].country === filmcountrie.value ?
+          
+            movieEL.innerHTML = 
+            `
+                <div class="movie">
+                    <div class="movie__cover-ineer">
+                        <img src="${movie.posterUrlPreview}"
+                        class="movie_cover"
+                        alt="${movie.nameRu}">
+                        <div class="movie__cover--darkened">
     
-    getMoviesList(API_URL_POPULAR_none + page);
+                        </div>
+                    </div>
+                    <div class="movie__info">
+                        <div class="movie__title">${movie.nameRu}</div>
+                        <div class="movie__category">${movie.genres.map((genre) => ` ${genre.genre}`)}</div>
+                        ${movie.rating && 
+                            `
+                            <div class="movie__average movie__average--${getClassByRate(movie.rating)}">${voteNum}</div>
+                            `
+                        }
+                        
+                    </div>
+                </div>
+            `   
+        
+            
+        : null 
+     // отрисовывем карточку фильма
+     movie.rating >= ratyng.value && movie.year >= filmyear.value && movie.genres[0].genre == ganer.value  && movie.countries[0].country === filmcountrie.value ?     
+     moviesEl.appendChild(movieEL):null //добавляем блок movie в  movies
+      
+    })
 }
 
 
