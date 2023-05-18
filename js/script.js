@@ -214,11 +214,13 @@ window.onclick = function(event) {
 document.querySelector('#submit').onclick = function()
 {
     
-    getMoviesList(API_URL_POPULAR_none + page);
 
-    for(let i = 2;i < 20;i++)
+    document.querySelector(".movies").innerHTML = ""; //очищаем блок с карточками для вывода новых из поиска или по подбору
+
+
+    for(let i = 1;i <= 20;i++)
     {
-        getMoviesLists(API_URL_POPULAR_none + i);
+        getMoviesList(API_URL_POPULAR_none + i);
     }
     
 
@@ -255,8 +257,6 @@ function showMoviesList(data)
 {
  const moviesEl = document.querySelector(".movies"); //указываем где будут отрисовываться карточки
 
-    document.querySelector(".movies").innerHTML = ""; //очищаем блок с карточками для вывода новых из поиска или по подбору
-
     data.films.forEach(movie => // проходимся по всем объектам в массиве movie 
     { 
         
@@ -302,72 +302,7 @@ function showMoviesList(data)
     })
 }
 
-// showmovielist 2 
 
-async function getMoviesLists(url) // создание асинхронной функции для запроса
-{
-    const resp = await fetch(url, {
-        headers:{
-            "Content-Type" : "application/json",
-            "X-API-KEY": API_KEY,
-        },
-    });
-
-    const respData = await resp.json();
-    console.log(respData);
-
-    showMoviesLists(respData);
-}
-
-function showMoviesLists(data)
-{
- const moviesEl = document.querySelector(".movies"); //указываем где будут отрисовываться карточки
-
-
-    data.films.forEach(movie => // проходимся по всем объектам в массиве movie 
-    { 
-        
-
-        
-            movieEL = document.createElement("div"); // создание элемента
-            movieEL.classList.add("movie") ; // задаем класс нашему элементу
-       
-            // добавляем класс movie в наш блок
-            
-            movie.rating >= ratyng.value && movie.year >= filmyear.value && movie.genres[0].genre == ganer.value  && movie.countries[0].country === filmcountrie.value ?
-          
-            movieEL.innerHTML = 
-            `
-                <div class="movie">
-                    <div class="movie__cover-ineer">
-                        <img src="${movie.posterUrlPreview}"
-                        class="movie_cover"
-                        alt="${movie.nameRu}">
-                        <div class="movie__cover--darkened">
-    
-                        </div>
-                    </div>
-                    <div class="movie__info">
-                        <div class="movie__title">${movie.nameRu}</div>
-                        <div class="movie__category">${movie.genres.map((genre) => ` ${genre.genre}`)}</div>
-                        ${movie.rating && 
-                            `
-                            <div class="movie__average movie__average--${getClassByRate(movie.rating)}">${voteNum}</div>
-                            `
-                        }
-                        
-                    </div>
-                </div>
-            `   
-        
-            
-        : null 
-     // отрисовывем карточку фильма
-     movie.rating >= ratyng.value && movie.year >= filmyear.value && movie.genres[0].genre == ganer.value  && movie.countries[0].country === filmcountrie.value ?     
-     moviesEl.appendChild(movieEL):null //добавляем блок movie в  movies
-      
-    })
-}
 
 
 
